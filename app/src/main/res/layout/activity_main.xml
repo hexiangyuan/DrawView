@@ -95,6 +95,13 @@
             <io.github.drawview.practice.Practice9PieCharView
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:text="画 Path"
+                android:layout_height="wrap_content" />
+            <io.github.drawview.practice.Practice10DrawPathView
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
         </LinearLayout>
 
     </ScrollView>
