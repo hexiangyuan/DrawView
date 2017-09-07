@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.drawview.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画一个黄色的" />
+
+            <io.github.drawview.practice.Practice1DrawColorView
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画圆" />
+
+            <io.github.drawview.practice.Practice2DrawCircleView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画方" />
+
+            <io.github.drawview.practice.Practice3DrawRectView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画点点" />
+
+            <io.github.drawview.practice.Practice4DrawPointView
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画椭圆" />
+
+            <io.github.drawview.practice.Practice5DrawOvalView
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画线" />
+
+            <io.github.drawview.practice.Practice6DrawLineView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画弧形" />
+
+            <io.github.drawview.practice.Practice7DrawArcView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="画直方图" />
+
+            <io.github.drawview.practice.Practice8HistogramVIew
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画饼状图" />
+
+            <io.github.drawview.practice.Practice9PieCharView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
