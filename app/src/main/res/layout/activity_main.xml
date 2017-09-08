@@ -79,9 +79,9 @@
                 android:layout_height="400dp" />
 
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="画直方图" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画直方图" />
 
             <io.github.drawview.practice.Practice8HistogramVIew
                 android:layout_width="match_parent"
@@ -95,13 +95,42 @@
             <io.github.drawview.practice.Practice9PieCharView
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />
+
             <TextView
                 android:layout_width="match_parent"
-                android:text="画 Path"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="画 Path" />
+
             <io.github.drawview.practice.Practice10DrawPathView
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画渐变" />
+
+            <io.github.drawview.practice.Practice11DrawLinearGradientView
+                android:layout_width="match_parent"
+                android:layout_height="700dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画圆 Bitmap" />
+
+            <io.github.drawview.practice.Practice12DrawBitmapShaderView
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画贝塞尔曲线" />
+
+            <io.github.drawview.practice.Practice13BezierView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
         </LinearLayout>
 
     </ScrollView>
