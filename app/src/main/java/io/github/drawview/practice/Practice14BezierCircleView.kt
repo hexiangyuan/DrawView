@@ -37,9 +37,9 @@ class Practice14BezierCircleView : View {
     private val mPaint: Paint
     private var duration: Float = 0.0f
 
-    private var circle: CircleBezier? = null
+    private lateinit var circle: CircleBezier
 
-    private lateinit var path: Path
+    private var path: Path
 
     constructor(context: Context) : super(context)
 
@@ -69,44 +69,87 @@ class Practice14BezierCircleView : View {
         this.endPoint = PointF(this.w - radius, centerPoint.y)
         duration = endPoint.x - startPoint.x
         circle = CircleBezier(PointF(startPoint.x, startPoint.y), radius, c)
+                .createCircle()
     }
+
+    private var timeOld: Float = 0f
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         path.reset()
-        if (currentAnimate > 0) {
-            if (currentAnimate > 0 && currentAnimate <= 0.2f * animateDuration) {
-                circle!!.createCircle()
+        if (currentAnimate > 0 && currentAnimate <= 0.2f * animateDuration) {
+            val offset = radius * 0.8f * (currentAnimate - timeOld) / 0.2f * animateDuration
+            circle.p2.offset(offset, 0f)
+            circle.p2T.x = circle.p2.x
+            circle.p2B.x = circle.p2.x
+        } else if (currentAnimate > 0.2f * animateDuration && currentAnimate <= 0.4f * animateDuration) {
+            val p0Offset = radius * 0.8f * (timeOld - currentAnimate) / 0.2f * animateDuration
+            val moveOffset = duration * currentAnimate / animateDuration + startPoint.x
+            circle.moveTo(moveOffset, circle.p.y)
+            circle.p0.offset(p0Offset, 0f)
+            circle.p0T.x = circle.p0.x
+            circle.p0B.x = circle.p0.x
+            val p3Offset = radius * 0.2f * (timeOld - currentAnimate) / 0.2f * animateDuration
+            val p1Offset = radius * 0.2f * (currentAnimate - timeOld) / 0.2f * animateDuration
+            circle.p1.offset(0f, p1Offset)
+            circle.p1L.offset(0f, p1Offset)
+            circle.p1R.offset(0f, p1Offset)
+            circle.p3.offset(0f, p3Offset)
+            circle.p3L.offset(0f, p3Offset)
+            circle.p3R.offset(0f, p3Offset)
 
-            } else if (currentAnimate > 0.2f * animateDuration && currentAnimate <= 0.4f * animateDuration) {
+        } else if (currentAnimate > 0.4f * animateDuration && currentAnimate <= 0.7f * animateDuration) {
+            val moveOffset = duration * currentAnimate / animateDuration + startPoint.x
+            circle.moveTo(moveOffset, circle.p.y)
+            val offset = 0 - radius * 0.8f * (currentAnimate - timeOld) / 0.3f * animateDuration
+            circle.p2.offset(offset, 0f)
+            circle.p2T.x = circle.p2.x
+            circle.p2B.x = circle.p2.x
+            val p1Offset = radius * 0.2f * (timeOld - currentAnimate) / 0.3f * animateDuration
+            val p3Offset = radius * 0.2f * (currentAnimate - timeOld) / 0.3f * animateDuration
+            circle.p1.offset(0f, p1Offset)
+            circle.p1L.offset(0f, p1Offset)
+            circle.p1R.offset(0f, p1Offset)
+            circle.p3.offset(0f, p3Offset)
+            circle.p3L.offset(0f, p3Offset)
+            circle.p3R.offset(0f, p3Offset)
 
-
-            } else if (currentAnimate > 0.4f * animateDuration && currentAnimate <= 0.6f * animateDuration) {
-
-            } else if (currentAnimate > 0.6f * animateDuration && currentAnimate <= 0.8f * animateDuration) {
-
-            } else if (currentAnimate > 0.6f * animateDuration && currentAnimate <= animateDuration) {
-
-            }
-            path.moveTo(circle!!.p0.x, circle!!.p0.y)
-            path.cubicTo(circle!!.p0T.x, circle!!.p0T.y,
-                    circle!!.p1L.x, circle!!.p1L.y,
-                    circle!!.p1.x, circle!!.p1.y)
-            path.cubicTo(circle!!.p1R.x, circle!!.p1R.y,
-                    circle!!.p2T.x, circle!!.p2T.y,
-                    circle!!.p2.x, circle!!.p2.y)
-            path.cubicTo(circle!!.p2B.x, circle!!.p2B.y,
-                    circle!!.p3R.x, circle!!.p3R.y,
-                    circle!!.p3.x, circle!!.p3.y)
-            path.cubicTo(circle!!.p3L.x, circle!!.p3L.y,
-                    circle!!.p0B.x, circle!!.p0B.y,
-                    circle!!.p0.x, circle!!.p0.y)
-            canvas.drawPath(path, mPaint)
+        } else if (currentAnimate > 0.7f * animateDuration && currentAnimate <= 0.9f * animateDuration) {
+            val moveOffset = duration * currentAnimate / animateDuration + startPoint.x
+            circle.moveTo(moveOffset, circle.p.y)
+            val p0Offset = radius * 1.0f * (currentAnimate - timeOld) / 0.2f * animateDuration
+            circle.p0.offset(p0Offset, 0f)
+            circle.p0T.x = circle.p0.x
+            circle.p0B.x = circle.p0.x
+        } else if (currentAnimate > 0.9f * animateDuration && currentAnimate <= animateDuration) {
+            val moveOffset = duration * currentAnimate / animateDuration + startPoint.x
+            circle.moveTo(moveOffset, circle.p.y)
+            val p0Offset = radius * 0.2f * (timeOld - currentAnimate) / 0.1f * animateDuration
+            circle.p0.offset(p0Offset, 0f)
+            circle.p0T.x = circle.p0.x
+            circle.p0B.x = circle.p0.x
         }
+        timeOld = currentAnimate
+        path.moveTo(circle.p0.x, circle.p0.y)
+        path.cubicTo(circle!!.p0T.x, circle!!.p0T.y,
+                circle!!.p1L.x, circle!!.p1L.y,
+                circle!!.p1.x, circle!!.p1.y)
+        path.cubicTo(circle!!.p1R.x, circle!!.p1R.y,
+                circle!!.p2T.x, circle!!.p2T.y,
+                circle!!.p2.x, circle!!.p2.y)
+        path.cubicTo(circle!!.p2B.x, circle!!.p2B.y,
+                circle!!.p3R.x, circle!!.p3R.y,
+                circle!!.p3.x, circle!!.p3.y)
+        path.cubicTo(circle!!.p3L.x, circle!!.p3L.y,
+                circle!!.p0B.x, circle!!.p0B.y,
+                circle!!.p0.x, circle!!.p0.y)
+        canvas.drawPath(path, mPaint)
     }
 
     fun startAnimate() {
         path.reset()
+        circle = CircleBezier(PointF(startPoint.x, startPoint.y), radius, c)
+                .createCircle()
         currentAnimate = 0f
         val move = MoveAnimate()
         move.duration = (animateDuration * 1000).toLong()
@@ -155,6 +198,28 @@ class Practice14BezierCircleView : View {
             p3L = PointF(p3.x - c, p3.y)
             p3R = PointF(p3.x + c, p3.y)
             return this
+        }
+
+        fun offset(x: Float, y: Float) {
+            p.offset(x, y)
+            p0.offset(x, y)
+            p0T.offset(x, y)
+            p0B.offset(x, y)
+            p1.offset(x, y)
+            p1L.offset(x, y)
+            p1R.offset(x, y)
+            p2.offset(x, y)
+            p2T.offset(x, y)
+            p2B.offset(x, y)
+            p3.offset(x, y)
+            p3L.offset(x, y)
+            p3R.offset(x, y)
+        }
+
+        fun moveTo(x: Float, y: Float) {
+            val offsetX = x - p.x
+            val offsetY = y - p.y
+            offset(offsetX, offsetY)
         }
     }
 
