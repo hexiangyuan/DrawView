@@ -131,6 +131,16 @@
             <io.github.drawview.practice.Practice13BezierView
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />
+            <TextView
+                android:onClick="start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画三贝塞尔曲线" />
+
+            <io.github.drawview.practice.Practice14BezierCircleView
+                android:id="@+id/pra14"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
         </LinearLayout>
 
     </ScrollView>
